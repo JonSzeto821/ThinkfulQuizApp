@@ -1,5 +1,6 @@
 'use strict';
 
+let scrnBtn = '#start-btn';
 let num = 0;
 let count = 0;
 let correctScore = 0;
@@ -136,7 +137,7 @@ function newGame(){
   correctScore = 0;
   incorrectScore = 0;
   prior_questions = [];
-  console.log('new game');
+  //console.log('new game');
 }
 
 // this function will be repsonsible for rendering the question to the browser
@@ -165,13 +166,14 @@ function renderQuestion(){
   $('#option-3').html(quiz_questions[num]["options"][3]);
   $('#option-4').html(quiz_questions[num]["options"][4]);
   $('#option-5').html(quiz_questions[num]["options"][5]);
-  console.log(prior_questions);
+  //console.log(prior_questions);
   updateCorrectScore();
   updateIncorrectScore();
   count++;
   updateQuestionNum();
   questionTotal();
   $('#progress').text(count+"/"+count_limit);  
+  scrnBtn = '#submit-btn';
 }
 
 //render feedback to the user
@@ -229,7 +231,8 @@ function defineRank(){
 $(document).ready(function() {
     //functionality for START
     $("#start-btn").on('click', function() {       
-        console.log("Start button clicked");
+        //console.log("Start button clicked");
+        scrnBtn = '#submit-btn';
         $("#question").removeClass(".hidden");
         $('.header').append("<img src='http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4e5.png' alt='Liverpool FC Club Crest' class='small' />");
         $("#start").fadeOut(500, function() {
@@ -243,20 +246,23 @@ $(document).ready(function() {
     //MC selection
     $("input.radio:checked").next('label').addClass('blue');
     
+
+
     //functionality for SUBMIT
     $("#submit-btn").on('click', function() {
         var user_answer = $('input:radio[name=multipleChoice]:checked').val();
-        console.log(user_answer);
+        //console.log(user_answer);
+        scrnBtn = '.continue-btn';
         if (!user_answer) {
-            console.log("nothing selected");
+            //console.log("nothing selected");
             alert('Please make a selection!');
         } else {
-            console.log("selection made");
-            console.log($("input:radio[name=multipleChoice]:checked").val());
+            //console.log("selection made");
+            //console.log($("input:radio[name=multipleChoice]:checked").val());
             if (correct(user_answer)) {
                 $('#quiz').fadeOut(500, function() {
                   correctScore++;
-                  console.log("User answered correctly");
+                  //console.log("User answered correctly");
                   updateCorrectScore();
                   $('#correct').fadeIn(500);    
                 });
@@ -264,7 +270,7 @@ $(document).ready(function() {
                 $('#quiz').fadeOut(500, function() {
                   $('#incorrect').fadeIn(500);
                   incorrectScore++;
-                  console.log(`The correct answer is ${quiz_questions[num]["answerText"]}`);
+                  //console.log(`The correct answer is ${quiz_questions[num]["answerText"]}`);
                   $('#solution').html(`The correct answer is: ${quiz_questions[num]["answerText"]}`);
                 });
             }
@@ -273,18 +279,21 @@ $(document).ready(function() {
     
     //functionality to CONTINUE
     $('.continue-btn').on('click', function(){
-      console.log('Continue triggered');
+      //console.log('Continue triggered');
+      
       //check if on final question
       $('#correct').fadeOut(500, function() {
         $('#incorrect').fadeOut(500, function(){
+
           if(count >= count_limit){
             updateCorrectScore();
             defineRank();
+            //scrnBtn = '#restart';
             $('#result').fadeIn(500);
           }else{
             generateQuestion()
             //renderQuestion();
-            $('form input').prop('checked', false);
+            $('div input').prop('checked', false);
             $('#quiz').fadeIn(500);
           }
         });
@@ -293,7 +302,8 @@ $(document).ready(function() {
     
     //functionality to RESET
     $('#restart').on('click', function(){
-      console.log("Restart triggered");
+      //console.log("Restart triggered");
+      scrnBtn = '#start-btn';
       $('#result').fadeOut(500, function(){
         newGame();
         generateQuestion();
@@ -303,5 +313,14 @@ $(document).ready(function() {
       });
     });
 
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        //alert('You pressed enter!');
+        console.log(scrnBtn);
+        $(scrnBtn).click();
+        console.log(scrnBtn);
+        console.log(' ');
+    }
+});
 });
 

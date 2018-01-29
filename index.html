@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
     <main role="main">
       <div class="content">
         <!--Question Page Template-->
-        <section role="quiz" id="quiz" class="hidden">
+        <section role="region" id="quiz" class="hidden">
           <div class="corners half-black white padding">
           <div class="trackScore">
             <ul>
@@ -27,8 +27,8 @@
           </div>
           <div id="question" class="question clearfix ">
             <p id="text" class="center"></p>
-            <form>
-              <fieldset class="answer-container center">
+            <div>
+              <div class="answer-container center">
                 <label class="corners2">
                   <input type="radio" value="1" name="multipleChoice">
                   <span id="option-1">Answer 1</span>
@@ -49,8 +49,8 @@
                   <input type="radio" value="5" name="multipleChoice">
                   <span id="option-5">Answer 5</span>
                 </label><br>
-              </fieldset>
-            </form>
+              </div>
+            </div>
           </div>
             <div class="btn-wrap">
               <button id="submit-btn" class="button">SUBMIT</button>
@@ -60,7 +60,7 @@
         </section>
         
         <!--Title Page elements-->
-        <section role="title" id="start" class="start">
+        <section role="region" id="start" class="start">
           <img src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4e5.png" alt="Liverpool FC Club Crest" />
           <h3>Lets Begin! Click 'KICK OFF'</h3>
           <button id="start-btn" class="button">KICK OFF</button>
@@ -68,7 +68,7 @@
           
         <!--Feedback elements-->
         <!--Correct Feedback-->
-        <section role="correct" id="correct" class="pop-up half-black corners center">
+        <section role="region" id="correct" class="pop-up half-black corners center">
           <h2>Correct!</h2>
           <p>You're making great strides to be considered for the first team!</p>
           <p><span class="correctScore">0</span> of 5 correct</p>
@@ -78,7 +78,7 @@
         </section>
         
         <!--Incorrect Feedback-->
-        <section role="incorrect" id="incorrect" class="pop-up half-black corners center">
+        <section role="region" id="incorrect" class="pop-up half-black corners center">
           <h2>Incorrect!</h2>
           <p>Head back to Melwood for additional training</p>
           <p><span id='solution' class="bold"></span></p>
@@ -89,7 +89,7 @@
         </section>
           
         <!--Result Page elements-->
-        <section role="result" id="result" class="pop-up half-black corners center">
+        <section role="region" id="result" class="pop-up half-black corners center">
           <h2>There goes the final whistle!</h2>
           <p>You answered <span class="correctScore">0</span> of 5 questions correctly!</p>
           <p><span class="js-rank"></span></p>
@@ -100,7 +100,7 @@
       </div>
     </main>
     
-    <footer role="contentInfo">
+    <footer role="contentinfo">
       <div class="content center">
         <p>© 2018 Jon Szeto</p>
       </div>
